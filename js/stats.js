@@ -58,6 +58,8 @@ var drawResult = function (index, ctx) {
 };
 
 window.renderStatistics = function (ctx) {
+  names = ['Вы'];
+  times = [];
 
   getNames();
   getTimes();
