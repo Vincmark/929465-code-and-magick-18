@@ -24,6 +24,18 @@ var createCharacters = function () {
   }
 };
 
+var showSetupWindow = function () {
+  var magicSetupWindow = document.querySelector('.setup');
+  magicSetupWindow.classList.remove('hidden');
+};
+
+var renderSimilarPlayers = function (fragment) {
+  for (var i = 0; i < CHARACTERS_COUNT; i++) {
+    fragment.appendChild(getSimilarPlayer(similarWizardTemplate, i));
+  }
+  return fragment;
+};
+
 var getSimilarPlayer = function (template, index) {
   var similarWizardElement = template.cloneNode(true);
   similarWizardElement.querySelector('.setup-similar-label').textContent = characters[index].name;
@@ -32,28 +44,32 @@ var getSimilarPlayer = function (template, index) {
   return (similarWizardElement);
 };
 
+var addFragmentToDOM = function (fragment) {
+  var similarList = document.querySelector('.setup-similar-list');
+  similarList.appendChild(fragment);
+};
+
+var showSimilarPlayersList = function () {
+  var similarListWindow = document.querySelector('.setup-similar');
+  similarListWindow.classList.remove('hidden');
+};
+
 createCharacters();
 
 // show player setup window
-var magicSetupWindow = document.querySelector('.setup');
-magicSetupWindow.classList.remove('hidden');
-
+showSetupWindow();
 
 // get similar wizard template
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
-
 // render similar players list to a fragment
 var fragment = new DocumentFragment();
-for (var i = 0; i < CHARACTERS_COUNT; i++) {
-  fragment.appendChild(getSimilarPlayer(similarWizardTemplate, i));
-}
+renderSimilarPlayers(fragment);
 
 // add fragment with similar players list to the DOM
-var similarList = document.querySelector('.setup-similar-list');
-similarList.appendChild(fragment);
+addFragmentToDOM(fragment);
 
 // show similar players list in the DOM
-var similarListWindow = document.querySelector('.setup-similar');
-similarListWindow.classList.remove('hidden');
+showSimilarPlayersList();
+
 
