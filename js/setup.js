@@ -43,10 +43,10 @@ var createCharacters = function () {
   }
 };
 
-var showSetupWindow = function () {
-  var magicSetupWindow = document.querySelector('.setup');
-  magicSetupWindow.classList.remove('hidden');
-};
+// var showSetupWindow = function () {
+//   var magicSetupWindow = document.querySelector('.setup');
+//   magicSetupWindow.classList.remove('hidden');
+// };
 
 var renderSimilarPlayers = function (fragment) {
   for (var i = 0; i < CHARACTERS_COUNT; i++) {
@@ -76,7 +76,7 @@ var showSimilarPlayersList = function () {
 createCharacters();
 
 // show player setup window
-//showSetupWindow();
+// showSetupWindow();
 
 // get similar wizard template
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
@@ -102,6 +102,7 @@ var wizardEyes = setupWizard.querySelector('.wizard-eyes');
 var setupFireballWrap = document.querySelector('.setup-fireball-wrap');
 var setupUserName = document.querySelector('.setup-user-name');
 
+// eslint-disable-next-line no-unused-vars
 userNameInput.addEventListener('invalid', function (evt) {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя должно состоять минимум из 2-х символов');
@@ -113,7 +114,6 @@ userNameInput.addEventListener('invalid', function (evt) {
     userNameInput.setCustomValidity('');
   }
 });
-
 
 var onPopupEscPress = function (evt) {
   if (evt.keyCode === ESC_KEYCODE) {
@@ -128,7 +128,7 @@ var openPopup = function () {
   document.addEventListener('keydown', onPopupEscPress);
 };
 
-var closePopup = function() {
+var closePopup = function () {
   setupWindow.classList.add('hidden');
   document.removeEventListener('keydown', onPopupEscPress);
 };
@@ -158,7 +158,6 @@ var changeWizardCoatColor = function () {
   wizardCoat.style.fill = newWizardCoatColor;
   var input = document.getElementsByName('coat-color');
   input[0].value = newWizardCoatColor;
-
 };
 
 var changeWizardEyeColor = function () {
