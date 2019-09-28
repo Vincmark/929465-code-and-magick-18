@@ -4,7 +4,6 @@ var FIRST_NAMES_LIST = ['Иван', 'Хуан Себастьян', 'Мария',
 var SECOND_NAMES_LIST = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var MANTLE_COLORS_LIST = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var EYE_COLORS_LIST = ['black', 'red', 'blue', 'yellow', 'green'];
-
 var CHARACTERS_COUNT = 4;
 
 var characters = [];
@@ -13,12 +12,24 @@ var getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+var getRandomName = function () {
+  return FIRST_NAMES_LIST [getRandomInt(0, FIRST_NAMES_LIST.length - 1)] + ' ' + SECOND_NAMES_LIST [getRandomInt(0, SECOND_NAMES_LIST.length - 1)];
+};
+
+var getRandomCoatColor = function () {
+  return MANTLE_COLORS_LIST [getRandomInt(0, MANTLE_COLORS_LIST.length - 1)];
+};
+
+var getRandomEyeColor = function () {
+  return EYE_COLORS_LIST [getRandomInt(0, EYE_COLORS_LIST.length - 1)];
+};
+
 var createCharacters = function () {
   for (var i = 0; i < CHARACTERS_COUNT; i++) {
     var character = {
-      name: FIRST_NAMES_LIST [getRandomInt(0, FIRST_NAMES_LIST.length - 1)] + ' ' + SECOND_NAMES_LIST [getRandomInt(0, SECOND_NAMES_LIST.length - 1)],
-      coatColor: MANTLE_COLORS_LIST [getRandomInt(0, MANTLE_COLORS_LIST.length - 1)],
-      eyeColor: EYE_COLORS_LIST [getRandomInt(0, EYE_COLORS_LIST.length - 1)]
+      name: getRandomName(),
+      coatColor: getRandomCoatColor(),
+      eyeColor: getRandomEyeColor()
     };
     characters.push(character);
   }
@@ -73,3 +84,15 @@ addFragmentToDOM(fragment);
 showSimilarPlayersList();
 
 
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = document.querySelector('.setup-close');
+setupOpen.addEventListener('click', onSetupOpen);
+setupClose.addEventListener('click', onSetupClose);
+
+var onSetupOpen = function () {
+  alert ('Setup Open');
+};
+
+var onSetupClose = function () {
+  alert ('Setup Close');
+};
